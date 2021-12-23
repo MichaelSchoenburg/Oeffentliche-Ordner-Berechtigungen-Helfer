@@ -12,7 +12,7 @@
     Author: Michael Schönburg
     Version: 1.0
     Last Change: 23.12.2021
-    GitHub Repository: 
+    GitHub Repository: https://github.com/MichaelSchoenburg/Oeffentliche-Ordner-Berechtigungen-Helfer
 #>
 
 
