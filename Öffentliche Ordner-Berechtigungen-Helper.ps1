@@ -90,14 +90,14 @@ if ($decision -eq 0) {
     $pubfolders = get-publicfolder -Recurse
     
     $title = 'Wählen Sie alle öffentliche Ordner an, auf welche der Benutzter Zugriff haben soll (verwenden Sie ggf. Strg + Linksklick).'
-    $choicepubf = $pubfolders | Select-Object Identity | Out-GridView -PassThru
+    $choicepubf = $pubfolders.Identity | Out-GridView -PassThru
     
     Write-Host "Die Berechtigungen werden gesetzt..."
 
     for ($i=0; $i -le $choicepubf.Count - 1; $i++) {
         Write-Progress -Activity “Setze Berechtigungen” -status "Verarbeite Berechtigung $i von $($choicepubf.count)" -percentComplete ($i / $choicepubf.count*100)
         Write-Host "Setze Berechtigung für $($TargMBX.PrimarySMTPAddress) fuer $($choicepubf[$i].Identity):"
-        $null = Add-PublicfolderclientPermission -Identity $choicepubf[$i] -user $TargMBX -AccessRights PublishingEditor
+        $null = Add-PublicfolderclientPermission -Identity $choicepubf[$i] -User $TargMBX.Alias -AccessRights PublishingEditor
     }
 
     Write-Host "Die Berechtigungen wurden gesetzt. Das Skript wird beendet."
